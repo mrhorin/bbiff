@@ -83,8 +83,7 @@ class Executable
         # out.puts "-----"
         puts render_post(post)
 
-        system(@settings.current['bbiff_show'],
-               thread.title, post.to_s)
+        # system(@settings.current['bbiff_show'],thread.title, post.to_s)
 
         sleep 1
       end
