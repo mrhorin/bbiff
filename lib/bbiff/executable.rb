@@ -16,7 +16,7 @@ class Executable
       clear
       if str[-1] == "\n"
         if str.rindex("\n") != str.size-1 || str.index("\n") < str.rindex("\n")
-          raise 'multiline' 
+          raise 'multiline'
         end
 
         @out.print str
@@ -77,10 +77,10 @@ class Executable
     puts "    #{@settings.current['thread_url']}"
 
     loop do
-      out.set_line "#{thread.title}(#{thread.last}) 新着レス確認中"
+      # out.set_line "#{thread.title}(#{thread.last}) 新着レス確認中"
 
       thread.posts(parse_range("#{start_no}-")).each do |post|
-        out.puts "-----"
+        # out.puts "-----"
         puts render_post(post)
 
         system(@settings.current['bbiff_show'],
@@ -92,7 +92,7 @@ class Executable
       start_no = thread.last + 1
       if start_no >= thread_stop
         out.puts "スレッドストップ"
-        break 
+        break
       end
 
       delay.times do |i|
@@ -112,7 +112,7 @@ class Executable
 
   def usage
     STDERR.puts "Usage: bbiff [http://jbbs.shitaraba.net/bbs/read.cgi/CATEGORY/BOARD_ID/THREAD_ID/] [START_NUMBER]"
-    
+
     STDERR.puts <<"EOD"
 
 Bbiff version #{Bbiff::VERSION}
