@@ -50,10 +50,12 @@ def render_body(body)
   indent(4, unescaped) + "\n"
 end
 
+# 書き込みを表示
 def render_post(post)
-  "#{render_resno post.no}：#{render_name post.name, post.mail}：#{render_date post.date}\n" \
+  "\n#{render_resno post.no}：#{green(render_name post.name, post.mail)}：#{cyan(render_date_absolute post.date)}\n" \
   "#{render_body post.body}"
 end
+
 
 # posts = Bbs::C板.new('game', 48538).thread(1416739363).posts(1..Float::INFINITY)
 # puts posts.map(&method(:render_post)).join("\n\n")
