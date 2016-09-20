@@ -2,8 +2,10 @@ require 'net/http'
 require 'uri'
 
 module Bbs
-
+# スレッド情報を保持するクラス
 class C板
+  attr_reader :スレ一覧URL, :カテゴリ, :掲示板番号
+
   def initialize(カテゴリ, 掲示板番号)
     @カテゴリ = カテゴリ
     @掲示板番号 = 掲示板番号
@@ -22,7 +24,7 @@ class C板
 
   def スレ一覧
     r = ダウンロード(@スレ一覧URL)
-    return r.force_encoding("EUC-JP").encode("UTF-8")
+    return r.force_encoding("EUC-JP").encode("utf-8", :invalid => :replace, :undef => :replace)
   end
 
   def dat(スレッド番号)
@@ -96,13 +98,14 @@ class Post
 end
 
 class Thread
-  attr_reader :id, :title, :last, :board
+  attr_reader :id, :title, :last, :board, :url
 
   def initialize(board, id, title, last = 1)
     @board = board
     @id = id
     @title = title
     @last = last
+    @url = "http://jbbs.shitaraba.net/bbs/read.cgi/#{@board.カテゴリ}/#{@board.掲示板番号}/#{id}/"
   end
 
   def dat_url
@@ -138,4 +141,3 @@ end # Module
 # t =  自板.thread(1416739363)
 
 # p t.posts(900..950)
-

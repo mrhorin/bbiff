@@ -23,4 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_dependency "unicode-display_width", "~>1.0.2"
   spec.add_dependency "toml-rb", "~>0.3.12"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "natto"
+  spec.add_development_dependency "terminal-notifier"
 end
